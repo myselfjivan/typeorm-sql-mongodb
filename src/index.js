@@ -5,16 +5,16 @@ const app = new Koa();
 const router = new Router();
 
 import { createConnection } from 'typeorm';
-const operations = require('./operations');
-
+import { User } from './entity/User';
 
 createConnection().then(async connection => {
 
-    router.get('/adduser', async(ctx) => {
+    router.get('/adduser', async ctx => {
         const user = new User();
         user.name = 'Pavan';
         user.sirname = 'Ghadage';
         await connection.mongoManager.save(user);
+        console.log(user);
         ctx.body = user;
     });
 
