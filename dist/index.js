@@ -12,7 +12,13 @@ var operations = require('./operations');
 
 (0, _typeorm.createConnection)().then(async function (connection) {
 
-    router.get('/adduser', operations.getUsers);
+    router.get('/adduser', async function (ctx) {
+        var user = new User();
+        user.name = 'Pavan';
+        user.sirname = 'Ghadage';
+        await connection.mongoManager.save(user);
+        ctx.body = user;
+    });
 
     app.use(router.routes()).use(router.allowedMethods());
     app.listen(3000);

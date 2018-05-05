@@ -1,15 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class User {
 
-    @PrimaryGeneratedColumn()
-    id = undefined;
+    @ObjectIdColumn()
+    id = ObjectID;
 
-    @Column("varchar")
-    name = "";
+    @Column('String')
+    name = String;
 
-    @Column("varchar")
-    sirname = "";
+    @Column('String')
+    sirname = String;
 
 }

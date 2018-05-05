@@ -4,12 +4,13 @@ var _typeorm = require('typeorm');
 
 var _User = require('./entity/User');
 
+var manager = (0, _typeorm.getMongoManager)();
+
 async function getUsers(ctx) {
     var user = new _User.User();
     user.name = 'Pavan';
     user.sirname = 'Ghadage';
-    var users = (0, _typeorm.getManager)().getRepository(_User.User);
-    await users.save(user);
+    await manager.save(user);
     ctx.body = user;
 }
 

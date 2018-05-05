@@ -10,7 +10,13 @@ const operations = require('./operations');
 
 createConnection().then(async connection => {
 
-    router.get('/adduser', operations.getUsers);
+    router.get('/adduser', async(ctx) => {
+        const user = new User();
+        user.name = 'Pavan';
+        user.sirname = 'Ghadage';
+        await connection.mongoManager.save(user);
+        ctx.body = user;
+    });
 
     app
         .use(router.routes())

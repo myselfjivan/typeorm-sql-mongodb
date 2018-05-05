@@ -1,11 +1,8 @@
 {
     "name": "default",
-    "type": "mysql",
-    "host": "mongo.penpenny.com",
-    "port": 3306,
-    "username": "remote",
-    "password": "remote123@",
-    "database": "wesense",
+    "type": "mongodb",
+    "host": "localhost",
+    "database": "typeorm",
     "synchronize": true,
     "entities": [
         "dist/entity/*.js"
