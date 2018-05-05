@@ -1,0 +1,24 @@
+{
+    "name": "default",
+    "type": "mysql",
+    "host": "mongo.penpenny.com",
+    "port": 3306,
+    "username": "remote",
+    "password": "remote123@",
+    "database": "wesense",
+    "synchronize": true,
+    "entities": [
+        "dist/entity/*.js"
+    ],
+    "subscribers": [
+        "dist/subscriber/*.js"
+    ],
+    "migrations": [
+        "dist/migration/*.js"
+    ],
+    "cli": {
+        "entitiesDir": "dist/entity",
+        "migrationsDir": "dist/migration",
+        "subscribersDir": "dist/subscriber"
+    }
+}
