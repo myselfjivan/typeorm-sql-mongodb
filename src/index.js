@@ -4,18 +4,22 @@ const Router = require('koa-router');
 const app = new Koa();
 const router = new Router();
 
-import { createConnection } from 'typeorm';
-import { User } from './entity/User';
+const typeorm = require('typeorm');
+const createConnection = typeorm.createConnection;
+const User = require('./model/User').User;
 
 createConnection().then(async connection => {
 
     router.get('/adduser', async ctx => {
-        const user = new User();
-        user.name = 'Pavan';
-        user.sirname = 'Ghadage';
-        await connection.mongoManager.save(user);
-        console.log(user);
-        ctx.body = user;
+        try {
+            const user = new User();
+            user.name = 'Pavan';
+            user.sirname = 'Ghadage';
+            const result = await connection.mongoManager.save(user); // set breakpoint
+            ctx.body = result;
+        } catch (e) {
+            ctx.body = e;
+        }
     });
 
     app
