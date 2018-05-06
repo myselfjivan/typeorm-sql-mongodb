@@ -4,7 +4,8 @@ const Router = require('koa-router');
 const app = new Koa();
 const router = new Router();
 
-import { createConnection } from 'typeorm';
+const typeorm = require('typeorm');
+const createConnection = typeorm.createConnection;
 const operations = require('./operations');
 
 

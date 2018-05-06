@@ -1,15 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+const typeorm = require('typeorm');
+const Entity = typeorm.Entity;
+const EntitySchema = typeorm.EntitySchema;
+const PrimaryGeneratedColumn = typeorm.PrimaryGeneratedColumn;
+const Column = typeorm.Column;
 
-@Entity()
-export class User {
+const User = require('../model/User').User;
 
-    @PrimaryGeneratedColumn()
-    id = undefined;
-
-    @Column("varchar")
-    name = "";
-
-    @Column("varchar")
-    sirname = "";
-
-}
+module.exports = new EntitySchema({
+    name: "User",
+    target: User,
+    columns: {
+        id: {
+            primary: true,
+            type: "int",
+            generated: true
+        },
+        name: {
+            type: "varchar"
+        },
+        sirname: {
+            type: "varchar"
+        }
+    }
+});
