@@ -8,7 +8,7 @@ async function getUsers(ctx) {
         const users = getManager().getRepository(User);
         return await users.find();
     } catch (e) {
-        return e;
+        throw new Error(e);
     }
 }
 
