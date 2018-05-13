@@ -8,7 +8,7 @@
     "database": "wesense",
     "synchronize": true,
     "entities": [
-        "src/entity/*.js"
+        "src/user/server/entity/*.js"
     ],
     "logging": false
 }
