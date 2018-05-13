@@ -4,7 +4,6 @@ const User = require('./model/User').User;
 
 async function getUsers(ctx) {
     try {
-        const user = new User();
         const users = getManager().getRepository(User);
         return await users.find();
     } catch (e) {
@@ -12,6 +11,16 @@ async function getUsers(ctx) {
     }
 }
 
+async function getSingleUser(data) {
+    try {
+        const users = getManager().getRepository(User);
+        return await users.findOne({ id: data.user });
+    } catch (e) {
+        throw new Error(e);
+    }
+}
+
 module.exports = {
-    getUsers
+    getUsers,
+    getSingleUser
 };

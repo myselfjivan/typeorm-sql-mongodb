@@ -6,6 +6,13 @@ async function get(ctx) {
     ctx.successJson(result);
 }
 
+async function getSingleUser(ctx) {
+    const data = ctx.params;
+    const result = await operations.getSingleUser(data);
+    ctx.successJson(result);
+}
+
 module.exports = {
-    get
+    get,
+    getSingleUser
 };
