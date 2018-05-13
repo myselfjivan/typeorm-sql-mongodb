@@ -1,32 +1,24 @@
 const Koa = require('koa');
-const Router = require('koa-router');
+const Knex = require('knex');
+const { Model } = require('objection');
+
+const knexConfig = require('./config/knexconfig');
+
+const router = require('../src/routes');
 
 const app = new Koa();
-const router = new Router();
 
 const typeorm = require('typeorm');
 const createConnection = typeorm.createConnection;
-const User = require('./model/User').User;
+const User = require('./user/model/User').User;
 
-createConnection().then(async connection => {
+const knex = Knex(knexConfig.development);
 
-    router.get('/adduser', async ctx => {
-        try {
-            const user = new User();
-            user.name = 'Pavan';
-            user.sirname = 'Ghadage';
-            const result = await connection.mongoManager.save(user); // set breakpoint
-            ctx.body = result;
-        } catch (e) {
-            ctx.body = e;
-        }
-    });
+Model.knex(knex);
 
-    app
-        .use(router.routes())
-        .use(router.allowedMethods());
-    app.listen(3000);
+app
+    .use(router.routes())
+app.listen(3000);
 
 
-    console.log("application is up and running on port 3000");
-}).catch(error => console.log("TypeORM connection error: ", error));
+console.log("application is up and running on port 3000");
