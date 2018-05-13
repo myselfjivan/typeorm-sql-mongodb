@@ -8,10 +8,9 @@ async function getUsers(ctx) {
         user.name = 'Pavan';
         user.sirname = 'Ghadage';
         const users = getManager().getRepository(User);
-        await users.save(user);
-        ctx.body = user;
+        return await users.save(user);
     } catch (e) {
-        ctx.body = e;
+        return e;
     }
 }
 
